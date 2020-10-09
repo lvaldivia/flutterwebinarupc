@@ -40,9 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-
         child: ListView(
-
           children: <Widget>[
             DrawerHeader(
               child: Text('Drawer Header'),
@@ -56,6 +54,18 @@ class _MyHomePageState extends State<MyHomePage> {
             ListTile(
               title: Text('Spam'),
             ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(icon: Icon(Icons.menu), onPressed: () {},),
+            IconButton(icon: Icon(Icons.star), onPressed: () {},),
+            IconButton(icon: Icon(Icons.account_balance_wallet), onPressed: () {},),
+            IconButton(icon: Icon(Icons.search), onPressed: () {},),
           ],
         ),
       ),
