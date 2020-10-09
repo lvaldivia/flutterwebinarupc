@@ -29,7 +29,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   void _incrementCounter() {
     setState(() {
       _counter++;
@@ -39,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
@@ -62,7 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            IconButton(icon: Icon(Icons.menu), onPressed: () {},),
+            IconButton(icon: Icon(Icons.menu), onPressed: () {
+              _showMessageInScaffold("Hola");
+            },),
             IconButton(icon: Icon(Icons.star), onPressed: () {},),
             IconButton(icon: Icon(Icons.account_balance_wallet), onPressed: () {},),
             IconButton(icon: Icon(Icons.search), onPressed: () {},),
@@ -92,5 +95,18 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  void _showMessageInScaffold(String message){
+    try {
+      _scaffoldKey.currentState.showSnackBar(
+          SnackBar(
+            content: Text(message),
+            duration: Duration(seconds: 2, milliseconds: 500),
+          )
+      );
+    } on Exception catch (e, s) {
+      print(s);
+    }
   }
 }
